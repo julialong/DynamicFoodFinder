@@ -15,7 +15,8 @@
         // Create a map and center it on Manhattan.
         var map = new google.maps.Map(document.getElementById('map'), mapSetup);
 
-        // var myRouteBoxer = new RouteBoxer();
+        // Create a new RouteBoxer
+        var myRouteBoxer = new RouteBoxer();
 
         // Create a renderer for directions and bind it to the map.
         var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
