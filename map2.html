@@ -25,7 +25,7 @@
       // in place of a google.maps.LatLng object.
 
       var map;
-          var locations = [
+      var locations = [
       ['Bondi Beach', -33.890542, 151.274856, 4],
       ['Coogee Beach', -33.923036, 151.259052, 5],
       ['Cronulla Beach', -34.028249, 151.157507, 3],
@@ -34,13 +34,12 @@
     ];
 
       function initialize() 
-      {
+       {
         var mapOptions = {
           zoom: 8,
           center: {lat: -34.397, lng: 150.644}
-        };
-        map = new google.maps.Map(document.getElementById('map'),
-            mapOptions);
+       };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         var marker = new google.maps.Marker({
           // The below line is equivalent to writing:
@@ -63,7 +62,7 @@
         }
       })(marker, i));
     } //loop ends
-
+/*
         // You can use a LatLng literal in place of a google.maps.LatLng object when
         // creating the Marker object. Once the Marker object is instantiated, its
         // position will be available as a google.maps.LatLng object. In this case,
@@ -78,6 +77,7 @@
         });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
+      */
     </script>
   </head>
   <body>
