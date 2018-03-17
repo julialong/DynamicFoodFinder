@@ -1,6 +1,10 @@
+      var distance;
+      var myRouteBoxer;
+      var bounds;
 
       function initMap() {
         var markerArray = [];
+        distance = 0.1;
 
         // Instantiate a directions service.
         var directionsService = new google.maps.DirectionsService;
@@ -16,7 +20,7 @@
         var map = new google.maps.Map(document.getElementById('map'), mapSetup);
 
         // Create a new RouteBoxer
-        var myRouteBoxer = new RouteBoxer();
+        myRouteBoxer = new RouteBoxer();
 
         // Create a renderer for directions and bind it to the map.
         var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
@@ -44,22 +48,41 @@
         }
 
         // Retrieve the start and end locations and create a DirectionsRequest using
-        // WALKING directions.
+        // DRIVING directions.
         directionsService.route({
           origin: document.getElementById('start').value,
           destination: document.getElementById('end').value,
-          travelMode: 'WALKING'
+          travelMode: 'DRIVING'
         }, function(response, status) {
           // Route the directions and pass the response to a function to create
           // markers for each step.
           if (status === 'OK') {
             document.getElementById('warnings-panel').innerHTML =
                 '<b>' + response.routes[0].warnings + '</b>';
+            var path = response.routes[0].overview_path;
+            bounds = myRouteBoxer.box(path, distance);
+            console.log(bounds);
+            searchBounds(bounds);
             directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
           }
         });
+      }
+
+      function searchBounds(bounds) {
+        for (var i = 0; i < bounds.length; i++) {
+          console.log(bounds[i]);
+          searchSingleBound(bounds[i]);
+        }
+      }
+
+      function searchSingleBound(bound) {
+        var request = {
+          bounds : bound,
+          keyword : 'restaurant'
+        }
+        //TODO: search for restaurants
       }
 
       function attachInstructionText(stepDisplay, marker, text, map) {
