@@ -20,7 +20,7 @@
       var myRouteBoxer;
       var bounds;
       var searchType;
-      var myMap;
+      var map;
 
       function getParameterByName(name, url) {
         if (!url) url = window.location.href;
@@ -89,8 +89,11 @@
         for (var i = 0; i < markerArray.length; i++) {
           markerArray[i].setMap(null);
         }
-        var cloc = getParameterByName("clocation");
-        var dest = getParameterByName("destination");
+        var cloc = document.getElementById('clocationSearch').value;
+        var dest = document.getElementById('destinationSearch').value;
+        
+        //var cloc = getParameterByName("clocation");
+        //var dest = getParameterByName("destination");
         console.log("clocation: " + cloc);
         console.log("destination: " + dest);
         // Retrieve the start and end locations and create a DirectionsRequest using
@@ -110,7 +113,7 @@
             searchBounds(bounds);
             directionsDisplay.setDirections(response);
           } else {
-            window.alert('Directions request failed due to ' + status);
+            window.alert('The address was not found'); // ' + status);
           }
         });
       }
@@ -131,8 +134,7 @@
         //addMarker(bound.getCenter(), "here");
         //TODO: search for restaurants
         
-      }
-      var center_coordinates = bound.getCenter();
+        var center_coordinates = bound.getCenter();
 
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
@@ -141,7 +143,7 @@
           type: ['restaurant'],
           rankBy: google.maps.places.RankBy.PROMINENCE    
         }, callback);
-      
+      }
 
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -150,7 +152,6 @@
           }
         }
       }
-    }
 
       function createMarker(place) {
         var placeLoc = place.geometry.location;
