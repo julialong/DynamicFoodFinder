@@ -21,6 +21,7 @@
       var bounds;
       var searchType;
       var map;
+      var currentNum;
 
       function getParameterByName(name, url) {
         if (!url) url = window.location.href;
@@ -44,7 +45,7 @@
         distance = 10;
 
         // Can change later to allow users to search for a variety of things
-        searchType = 'restaurant';
+        searchType = 'food';
 
         // Instantiate a directions service.
         var directionsService = new google.maps.DirectionsService;
@@ -120,6 +121,7 @@
 
       // Searches all rectangle bounds for relevant keywords
       function searchBounds(bounds) {
+        currentNum = 0;
         for (var i = 0; i < bounds.length; i++) {
           searchSingleBound(bounds[i]);
         }
@@ -131,24 +133,22 @@
           location : bound,
           keyword : searchType
         }
-        //addMarker(bound.getCenter(), "here");
-        //TODO: search for restaurants
         
         var center_coordinates = bound.getCenter();
 
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: center_coordinates,
-          radius: 10000,
-          type: ['restaurant'],
-          rankBy: google.maps.places.RankBy.PROMINENCE    
+          radius: 5000,
+          keyword: 'restaurant',  
         }, callback);
       }
 
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i], i);
+          for (var i = 0; i < 10; i++) {
+            createMarker(results[i], currentNum);
+            currentNum++;
           }
         }
       }
@@ -160,13 +160,6 @@
           position: place.geometry.location, 
           label : String(i)
         });
-
-//       function addMarker(latlng, name) {
-//         var marker = new google.maps.Marker({
-//           position : latlng,
-//           map : map,
-//           title : name
-//         });
       }
 
       function attachInstructionText(stepDisplay, marker, text, map) {
