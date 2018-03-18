@@ -6,7 +6,7 @@ body {
 	background-repeat: no-repeat;
     background-size: cover;
 	font-family : "Georgia", serif;
-	color : rgb(187, 192, 193);
+	color : rgb(217, 221, 226);
 }
 
 h1 {
@@ -25,6 +25,7 @@ h2 {
 	text-align:center;
 	font-size : 14px;
 	color : rgb(153, 190, 239);
+	text-shadow: .25px .25px white;
 
 }
 

@@ -158,7 +158,6 @@
         var marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location, 
-          label : String(i)
         });
 
 //       function addMarker(latlng, name) {
