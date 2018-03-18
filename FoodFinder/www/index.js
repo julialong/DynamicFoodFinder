@@ -160,10 +160,19 @@
           position: place.geometry.location, 
           label : String(i)
         });
+            /*
           marker.addListener('click', function() {
           map.setZoom(8);
           map.setCenter(marker.getPosition());
         });
+        */
+            
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+			return function () {
+				infowindow.setContent(locations[i][0]);
+				infowindow.open(map, marker);
+			}
+})(marker, i));
 
       }
 
