@@ -1,0 +1,19 @@
+{
+  "name": "dynamicfoodfinder",
+  "version": "1.0.0",
+  "description": "A food finder webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julialong/DynamicFoodFinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julialong/DynamicFoodFinder/issues"
+  },
+  "homepage": "https://github.com/julialong/DynamicFoodFinder#readme"
+}
