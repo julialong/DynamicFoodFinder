@@ -148,16 +148,17 @@
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+            createMarker(results[i], i);
           }
         }
       }
 
-      function createMarker(place) {
+      function createMarker(place, i) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
           map: map,
-          position: place.geometry.location
+          position: place.geometry.location,
+          label: i    
         });
 
 //       function addMarker(latlng, name) {
