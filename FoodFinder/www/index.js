@@ -115,7 +115,8 @@
         service.nearbySearch({
           location: center_coordinates,
           radius: 10000,
-          type: ['restaurant']
+          type: ['restaurant'],
+          rankBy: google.maps.places.RankBy.PROMINENCE    
         }, callback);
       
 
