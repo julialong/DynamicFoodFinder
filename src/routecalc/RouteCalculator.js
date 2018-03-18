@@ -79,7 +79,7 @@
 
       function searchSingleBound(bound) {
         var request = {
-          bounds : bound,
+          location : bound.getCenter(),
           keyword : 'restaurant'
         }
         //TODO: search for restaurants
