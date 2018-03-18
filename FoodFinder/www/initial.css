@@ -1,8 +1,43 @@
 body {
-	background-color : rgb(198, 225, 235);
+	text-align : center;
+	background-image: url("lights.jpg!d");
+	background-repeat: no-repeat;
+    background-size: cover;
+	font-family : "Georgia", serif;
+	color : rgb(187, 192, 193);
 }
 
 h1 {
+	width : 400px;
 	font-family : "Georgia", serif;
-	color : black;
+	border-radius: 15px;
+	background-color : rgba(62, 137, 155, 0.8);
+	text-align : center;
+	padding : 10px;
+	border : 10px;
+	margin : 10px;
+	margin-top : 200px;
+}
+
+h2 {
+	font-size : 14px;
+
+}
+
+button {
+	font-size : 12px;
+	font-style: bold;
+	border-radius: 10px;
+	height : 40px;
+	width : 120px;
+	margin : 20px;
+	padding : 5px;
+}
+
+input {
+	font-size : 12px;
+	margin: 10px;
+	text-align : center;
+	width : 200px;
+	height: 30px;
 }
