@@ -2,7 +2,7 @@
       var myRouteBoxer;
       var bounds;
       var searchType;
-      var myMap
+      var myMap;
 
       function initMap() {
         var markerArray = [];
