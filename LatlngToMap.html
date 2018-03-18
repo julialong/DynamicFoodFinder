@@ -41,8 +41,8 @@
           var service = new google.maps.places.PlacesService(map);
           service.nearbySearch({
             location: latlongvariable,
-            radius: 500,
-            type: ['store']
+            radius: 2000, //2 KILOMETERS
+            type: ['restaurant'] //CAN ADD OTHER TYPES TOO!
           }, callback);
         }
 
