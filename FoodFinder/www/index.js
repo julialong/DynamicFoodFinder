@@ -23,6 +23,9 @@
       var map;
       var currentNum;
 
+	// Instantiate an info window to hold step text.
+        var stepDisplay = new google.maps.InfoWindow;
+
       function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");
@@ -69,8 +72,7 @@
         // Create a renderer for directions and bind it to the map.
         var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
 
-        // Instantiate an info window to hold step text.
-        var stepDisplay = new google.maps.InfoWindow;
+
 
         // Display the route between the initial start and end selections.
         calculateAndDisplayRoute(
@@ -160,27 +162,28 @@
           position: place.geometry.location, 
           label : String(i)
         });
+	      google.maps.event.addListener(marker, 'click', function() {
+          // Open an info window when the marker is clicked on, containing the text
+          // of the step.
+          stepDisplay.setContent(text);
+          stepDisplay.open(map, marker);
+        });
             /*
           marker.addListener('click', function() {
           map.setZoom(8);
           map.setCenter(marker.getPosition());
         });
         */
-            
+            /*
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
 			return function () {
 				infowindow.setContent(locations[i][0]);
 				infowindow.open(map, marker);
 			}
-})(marker, i));
+})(marker, i)); */
 
       }
 
-      function attachInstructionText(stepDisplay, marker, text, map) {
-        google.maps.event.addListener(marker, 'click', function() {
-          // Open an info window when the marker is clicked on, containing the text
-          // of the step.
-          stepDisplay.setContent(text);
-          stepDisplay.open(map, marker);
-        });
+      //function attachInstructionText(stepDisplay, marker, text, map) {
+        
       }
