@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    
+    <style>
+        body{
+            background-color: darkcyan;
+        }
+        #bodyCenter{
+            height: 200px;
+            width: 400px;
+            background: rgb(177, 215, 155);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -200px;
+            text-align: center;
+            display: grid;
+            border-radius: 10pt;
+            /* margin: auto;
+            width: 50%;
+            border: 3px solid rgb(0, 128, 111);
+            padding: 10px;
+            text-align: center; */
+        }
+        #txtboxes{
+            display: inline;
+        }
+        #button{
+            display: inline;
+            border-radius: 10pt;
+            background-color: lightskyblue;
+            border: black;
+        }
+        #button:hover{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="bodyCenter">
+        <h1>Welcome to Dynamic Food Finder!!!</h1>
+        <div id="txtboxes">
+            <input name="clocation" placeholder="Current Location" type="text"/>
+            <input name="destination" placeholder="Destination" type="text"/>
+        </div>
+        
+        <button id="button" onclick= "document.location.href = './search.html';" type="button">Locate Restaurants!</button>
+    </div>
+</body>
+</html>
