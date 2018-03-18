@@ -59,8 +59,8 @@
           calculateAndDisplayRoute(
               directionsDisplay, directionsService, markerArray, stepDisplay, map);
         };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
-        document.getElementById('end').addEventListener('change', onChangeHandler);
+        document.getElementById('clocation').addEventListener('change', onChangeHandler);
+        document.getElementById('destination').addEventListener('change', onChangeHandler);
       }
 
       function calculateAndDisplayRoute(directionsDisplay, directionsService,
@@ -73,8 +73,8 @@
         // Retrieve the start and end locations and create a DirectionsRequest using
         // DRIVING directions.
         directionsService.route({
-          origin: document.getElementById('start').value,
-          destination: document.getElementById('end').value,
+          origin: document.getElementById('clocation').value,
+          destination: document.getElementById('destination').value,
           travelMode: 'DRIVING'
         }, function(response, status) {
           // Route the directions and pass the response to a function to create
