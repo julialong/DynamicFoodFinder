@@ -33,40 +33,38 @@ app.post('/index', function(request, result) {
         myRouteBoxer = new RouteBoxer();
 
         var myStartLatLng = googleMapsClient.geocode({
-        	address: start}, function(err, result) {
+        	address: start}, function(err, response) {
         		if (!err) {
-      				return result.json.results;
+      				return new googleMapsClient.LatLng(result.geometry.location.lat, result.geometry.location.lat);
       			}
         	});
         var myEndLatLng = googleMapsClient.geocode({
-        	address: end}, function(err, result) {
+        	address: end}, function(err, response) {
         		if (!err) {
-      				return result.json.results;
+      				return new googleMapsClient.LatLng(result.geometry.location.lat, result.geometry.location.lat);
       			}
         	});
 
-        // Display the route between the initial start and end selections.
-        calculateAndDisplayRoute(
-            directionsDisplay, directionsService, markerArray, stepDisplay, map);
+        calculateRoute(map);
       }
 
-      function calculateAndDisplayRoute(map) {
+      function calculateRoute(map) {
         // Retrieve the start and end locations and create a DirectionsRequest using
         // DRIVING directions.
-        directionsService.route({
-          origin: start,
-          destination: end,
+        googleMapsClient.directions({
+          origin: myStartLatLng,
+          destination: myEndLatLng,
           travelMode: 'DRIVING'
-        }, function(response, status) {
+        }, function(err, response) {
           // Route the directions and pass the response to a function to create
           // markers for each step.
-          if (status === 'OK') {
+          if (!err) {
             var path = response.routes[0].overview_path;
             bounds = myRouteBoxer.box(path, distance);
             searchBounds(bounds);
             directionsDisplay.setDirections(response);
           } else {
-            window.alert('Directions request failed due to ' + status);
+     		// TODO: handle error
           }
         });
       }
@@ -84,14 +82,6 @@ app.post('/index', function(request, result) {
           location : bound,
           keyword : searchType
         }
-        addMarker(bound.getCenter(), "here");
         //TODO: search for restaurants
       }
-
-      function addMarker(latlng, name) {
-        var marker = new google.maps.Marker({
-          position : latlng,
-          map : map,
-          title : name
-        });
       }
