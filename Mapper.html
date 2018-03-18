@@ -1,3 +1,4 @@
+/*
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,51 +22,55 @@
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+*/
+      // JAVASCRIPT CODE BEGINS HERE
+     function LatlngToMap(latlngob) //RECEIVE LATLONG OBJECT
+      {
+        var map;
+        var infowindow;
 
-      var map;
-      var infowindow;
+        function initMap() {
+          var latlongvariable = {lat: latlngob.lat(), lng: latlngob.lng()}; //GETTING LAT AND LONG
 
-      function initMap() {
-        var pyrmont = {lat: -33.867, lng: 151.195};
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: latlongvariable,
+            zoom: 15
+          });
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: pyrmont,
-          zoom: 15
-        });
+          infowindow = new google.maps.InfoWindow();
+          var service = new google.maps.places.PlacesService(map);
+          service.nearbySearch({
+            location: latlongvariable,
+            radius: 500,
+            type: ['store']
+          }, callback);
+        }
 
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: pyrmont,
-          radius: 500,
-          type: ['store']
-        }, callback);
-      }
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+        function callback(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              createMarker(results[i]);
+            }
           }
         }
-      }
 
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
+        function createMarker(place) {
+          var placeLoc = place.geometry.location;
+          var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+          });
+        }
+        //END OF JAVASCRIPT  
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
+    <div id="map"></div> //CHANGE API KEY BELOW!
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA79Z3FF3_ieTc85tGYGZCVtVgSvutyyYQ&libraries=places&callback=initMap" async defer></script>
   </body>
 </html>
