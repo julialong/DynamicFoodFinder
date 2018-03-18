@@ -2,6 +2,7 @@
  const express = require('express');
  const bodyParser = require('body-parser');
  const app = express();
+ var boxer = require('./RouteBoxer.js');
  app.use(bodyParser.json());
 
  var googleMapsClient = require('@google/maps').createClient({
@@ -10,9 +11,13 @@
  var start;
  var end;
 
+app.listen(3000, () => console.log('App listening on port 3000!'));
+
 app.post('/index', function(request, result) {
-	start: request.body.clocation;
-	end: request.body.destination;
+	//start = request.body.clocation,
+	//end = request.body.destination;
+	start = "300 Swift Avenue, Durham, NC",
+	end = "Duke University, Durham, NC";
 	initMap();
     });
 
@@ -29,26 +34,39 @@ app.post('/index', function(request, result) {
         // Can change later to allow users to search for a variety of things
         mySearchType = 'restaurant';
 
+        console.log(start);
+        console.log(end);
+
         // Create a new RouteBoxer
-        myRouteBoxer = new RouteBoxer();
+        //myRouteBoxer = boxer.RouteBoxer();
 
-        var myStartLatLng = googleMapsClient.geocode({
-        	address: start}, function(err, response) {
+        googleMapsClient.geocode({address: start}, function(err, response) {
+        		console.log(result.geometry.location.lat);
+        		console.log(result.geometry.location.lat);
         		if (!err) {
-      				return new googleMapsClient.LatLng(result.geometry.location.lat, result.geometry.location.lat);
+      				myStartLatLng = { lat: result.geometry.location.lat,
+      				lng: result.geometry.location.lng } ;
+      			}
+      			else {
+      				myStartLatLng = { lat: 0,
+      				lng: 0 } ;
       			}
         	});
-        var myEndLatLng = googleMapsClient.geocode({
-        	address: end}, function(err, response) {
+        googleMapsClient.geocode({address: end}, function(err, response) {
         		if (!err) {
-      				return new googleMapsClient.LatLng(result.geometry.location.lat, result.geometry.location.lat);
+      				myEndLatLng = { lat: result.geometry.location.lat,
+      				lng: result.geometry.location.lng } ;
+      			}
+      			else {
+      				myEndLatLng = { lat: 0,
+      				lng: 0 } ;
       			}
         	});
 
-        calculateRoute(map);
+        calculateRoute();
       }
 
-      function calculateRoute(map) {
+      function calculateRoute() {
         // Retrieve the start and end locations and create a DirectionsRequest using
         // DRIVING directions.
         googleMapsClient.directions({
@@ -60,9 +78,8 @@ app.post('/index', function(request, result) {
           // markers for each step.
           if (!err) {
             var path = response.routes[0].overview_path;
-            bounds = myRouteBoxer.box(path, distance);
-            searchBounds(bounds);
-            directionsDisplay.setDirections(response);
+            //bounds = myRouteBoxer.box(path, distance);
+            //searchBounds(bounds);
           } else {
      		// TODO: handle error
           }
@@ -83,5 +100,4 @@ app.post('/index', function(request, result) {
           keyword : searchType
         }
         //TODO: search for restaurants
-      }
       }
