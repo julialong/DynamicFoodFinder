@@ -6,15 +6,25 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src = "index.js"> </script>
-    <script type="text/javascript"
-         src="https://rawgit.com/denissellu/routeboxer/master/src/RouteBoxer.js"></script>
-   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBigBDzqJFXhodLt2F7CivnRyG9n6Re92Q&callback=initMap"></script>
-
+    
+    
 
 </head>
 <body>
+    <input name="clocationSearch" id="clocationSearch" placeholder="Current Location" type="text"/>
+    <input name="destinationSearch" id="destinationSearch" placeholder="Destination" type="text"/>
+
     <h1>This is another page!</h1>
+    <span id="map"></span>
+    
+    <script type="text/javascript"
+         src="https://rawgit.com/denissellu/routeboxer/master/src/RouteBoxer.js"></script>
+         
+         
+   <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBigBDzqJFXhodLt2F7CivnRyG9n6Re92Q&callback=initMap"></script>
+
+    <script src = "index.js"> </script>
+    
 </body>
 </html>

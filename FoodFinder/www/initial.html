@@ -30,17 +30,7 @@
             <input name="clocation" id="clocation" placeholder="Current Location" type="text"/>
             <input name="destination" id="destination" placeholder="Destination" type="text"/>
         </div>
-        <button id="button" onclick= "document.location.href = './search.html';" type="button">Locate Restaurants!</button>
+        <button id="button" onclick= "document.location.href = './search.html?clocation=' + document.getElementById('clocation').value + '&destination=' + document.getElementById('destination').value;" type="button">Locate Restaurants!</button>
     </div>
-<<<<<<< HEAD
-=======
-    </center>
-    <script src = "index.js"> </script>
-    <script
-   type="text/javascript"
-   src="https://rawgit.com/denissellu/routeboxer/master/src/RouteBoxer.js"></script>
-   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBigBDzqJFXhodLt2F7CivnRyG9n6Re92Q&callback=initMap"></script>
->>>>>>> 8a134668d8fa7a88efcc7f73719451daccfb54db
 </body>
 </html>

@@ -22,6 +22,23 @@
       var searchType;
       var myMap;
 
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    function setInitial(){
+        if(getParameterByName("clocation") != null)
+          document.getElementById('clocationSearch').value = getParameterByName("clocation");
+        if(getParameterByName("destination") != null)
+          document.getElementById('destinationSearch').value = getParameterByName("destination");
+    }
+    setInitial();
+
       function initMap() {
         var markerArray = [];
         distance = 10;
@@ -40,7 +57,10 @@
         }
 
         // Create a map and center it on Manhattan.
-        map = new google.maps.Map(document.getElementById('map'), mapSetup);
+        var mapElement = document.getElementById('map');
+        console.log(google.maps.Map);
+        map = new google.maps.Map(mapElement, mapSetup);
+        console.log(map);
 
         // Create a new RouteBoxer
         myRouteBoxer = new RouteBoxer();
@@ -59,8 +79,8 @@
           calculateAndDisplayRoute(
               directionsDisplay, directionsService, markerArray, stepDisplay, map);
         };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
-        document.getElementById('end').addEventListener('change', onChangeHandler);
+        document.getElementById('clocationSearch').addEventListener('change', onChangeHandler);
+        document.getElementById('destinationSearch').addEventListener('change', onChangeHandler);
       }
 
       function calculateAndDisplayRoute(directionsDisplay, directionsService,
@@ -69,12 +89,15 @@
         for (var i = 0; i < markerArray.length; i++) {
           markerArray[i].setMap(null);
         }
-
+        var cloc = getParameterByName("clocation");
+        var dest = getParameterByName("destination");
+        console.log("clocation: " + cloc);
+        console.log("destination: " + dest);
         // Retrieve the start and end locations and create a DirectionsRequest using
         // DRIVING directions.
         directionsService.route({
-          origin: document.getElementById('start').value,
-          destination: document.getElementById('end').value,
+          origin: cloc, // document.getElementById('clocation').value,
+          destination: dest, //document.getElementById('destination').value,
           travelMode: 'DRIVING'
         }, function(response, status) {
           // Route the directions and pass the response to a function to create
