@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="initial.css">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>App</title>
@@ -9,9 +10,6 @@
     <script src="main.js"></script> -->
     
     <style>
-        body{
-            background-color: darkcyan;
-        }
         #bodyCenter{
             height: 200px;
             width: 400px;
@@ -40,15 +38,19 @@
     </style>
 </head>
 <body>
-    
     <div id="bodyCenter">
         <h1>Dynamic Food Finder</h1>
         <div id="txtboxes">
             <input name="clocation" id="clocation" placeholder="Current Location" type="text"/>
             <input name="destination" id="destination" placeholder="Destination" type="text"/>
         </div>
-        
         <button id="button" onclick= "document.location.href = './search.html';" type="button">Locate Restaurants!</button>
     </div>
+    <script src = "index.js"> </script>
+    <script
+   type="text/javascript"
+   src="https://rawgit.com/denissellu/routeboxer/master/src/RouteBoxer.js"></script>
+   <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBigBDzqJFXhodLt2F7CivnRyG9n6Re92Q&callback=initMap"></script>
 </body>
 </html>
