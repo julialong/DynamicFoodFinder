@@ -105,16 +105,42 @@
           location : bound,
           keyword : searchType
         }
-        addMarker(bound.getCenter(), "here");
+        //addMarker(bound.getCenter(), "here");
         //TODO: search for restaurants
+        
       }
+      var center_coordinates = bound.getCenter();
 
-      function addMarker(latlng, name) {
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: center_coordinates,
+          radius: 10000,
+          type: ['restaurant']
+        }, callback);
+      
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+    }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
-          position : latlng,
-          map : map,
-          title : name
+          map: map,
+          position: place.geometry.location
         });
+
+//       function addMarker(latlng, name) {
+//         var marker = new google.maps.Marker({
+//           position : latlng,
+//           map : map,
+//           title : name
+//         });
       }
 
       function attachInstructionText(stepDisplay, marker, text, map) {
