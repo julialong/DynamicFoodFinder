@@ -160,6 +160,11 @@
           position: place.geometry.location, 
           label : String(i)
         });
+          marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+        });
+
       }
 
       function attachInstructionText(stepDisplay, marker, text, map) {
