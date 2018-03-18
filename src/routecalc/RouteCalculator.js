@@ -1,10 +1,15 @@
       var distance;
       var myRouteBoxer;
       var bounds;
+      var searchType;
+      var myMap
 
       function initMap() {
         var markerArray = [];
-        distance = 0.1;
+        distance = 10;
+
+        // Can change later to allow users to search for a variety of things
+        searchType = 'restaurant';
 
         // Instantiate a directions service.
         var directionsService = new google.maps.DirectionsService;
@@ -17,7 +22,7 @@
         }
 
         // Create a map and center it on Manhattan.
-        var map = new google.maps.Map(document.getElementById('map'), mapSetup);
+        map = new google.maps.Map(document.getElementById('map'), mapSetup);
 
         // Create a new RouteBoxer
         myRouteBoxer = new RouteBoxer();
@@ -61,7 +66,6 @@
                 '<b>' + response.routes[0].warnings + '</b>';
             var path = response.routes[0].overview_path;
             bounds = myRouteBoxer.box(path, distance);
-            console.log(bounds);
             searchBounds(bounds);
             directionsDisplay.setDirections(response);
           } else {
@@ -70,19 +74,29 @@
         });
       }
 
+      // Searches all rectangle bounds for relevant keywords
       function searchBounds(bounds) {
         for (var i = 0; i < bounds.length; i++) {
-          console.log(bounds[i]);
           searchSingleBound(bounds[i]);
         }
       }
 
+      // Searches one bound object for relevant keywords
       function searchSingleBound(bound) {
         var request = {
-          location : bound.getCenter(),
-          keyword : 'restaurant'
+          location : bound,
+          keyword : searchType
         }
+        addMarker(bound.getCenter(), "here");
         //TODO: search for restaurants
+      }
+
+      function addMarker(latlng, name) {
+        var marker = new google.maps.Marker({
+          position : latlng,
+          map : map,
+          title : name
+        });
       }
 
       function attachInstructionText(stepDisplay, marker, text, map) {
