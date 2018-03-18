@@ -10,22 +10,6 @@
     <script src="main.js"></script> -->
     
     <style>
-        #bodyCenter{
-            height: 200px;
-            width: 400px;
-            background: rgb(177, 215, 155);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            margin-top: -100px;
-            margin-left: -200px;
-            text-align: center;
-            display: grid;
-            border-radius: 10pt;
-        }
-        #txtboxes{
-            display: inline;
-        }
         #button{
             display: inline;
             border-radius: 10pt;
@@ -38,13 +22,25 @@
     </style>
 </head>
 <body>
+    <center>
     <div id="bodyCenter">
         <h1>Dynamic Food Finder</h1>
+        <h2> Input your starting and final locations to get a comprehensive list of places to stop and eat along your route! </h2>
         <div id="txtboxes">
             <input name="clocation" id="clocation" placeholder="Current Location" type="text"/>
             <input name="destination" id="destination" placeholder="Destination" type="text"/>
         </div>
         <button id="button" onclick= "document.location.href = './search.html';" type="button">Locate Restaurants!</button>
     </div>
+<<<<<<< HEAD
+=======
+    </center>
+    <script src = "index.js"> </script>
+    <script
+   type="text/javascript"
+   src="https://rawgit.com/denissellu/routeboxer/master/src/RouteBoxer.js"></script>
+   <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBigBDzqJFXhodLt2F7CivnRyG9n6Re92Q&callback=initMap"></script>
+>>>>>>> 8a134668d8fa7a88efcc7f73719451daccfb54db
 </body>
 </html>
