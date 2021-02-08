@@ -11,7 +11,7 @@ So we're introducing Dynamic, a web application that helps people choose the bes
  
  ![alt text](https://github.com/julialong/DynamicFoodFinder/blob/master/img/screenshots/inputs.png)
  
-Once the user selects their preference, they are given directions to that location. In the future, we will expand Dynamic to allow users to customize price ranges they are looking for, types of fare, and even different kinds of stores! You will soon be able to plan out the optimal gas station, supermarket, or even toy store along your daily route!
+Once the user selects their preference, they are given directions to that location. The number assigned to each pin is based on distance and food choices.
 
 ![alt text](https://github.com/julialong/DynamicFoodFinder/blob/master/img/screenshots/gmapsResult.png)
 
